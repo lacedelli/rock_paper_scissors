@@ -20,3 +20,20 @@ Expectations going in:
 	27/July/2019.
 
 
+Thoughts after finishing the project:
+
+	Not to sound like I'm bragging or anything, but the project was
+	overall a breeze, played a liite bit with ternary logic 
+	--knowledge of which to me was a little bit shaky beforehand--
+	and it worked on the first try! Of course, returning a string
+	is a lot simpler than any other operation, but it's a start!
+	
+	The main problem I encountered was with the handling of scope,
+	which still gives me a couple headaches here and there.
+	The variables which hold the score for the player and the pc 
+	originally were intended to be contained within the game() 
+	function, but they were not being updated by playRound(), so
+	I just did the simplest fix I could think of: making them both
+	global variables.
+
+	28/July/2019.
