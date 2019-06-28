@@ -6,6 +6,10 @@
 </head>
 <body>
 	<script>
+		
+		// Setup score counters
+		let pcScore = 0;
+		let playerScore = 0;
 		// The AI selects a move based on RNG
 		function computerPlay() {
 			let randNum = Math.floor(Math.random() * Math.floor(3));
@@ -19,12 +23,13 @@
 			}
 		}
 		
-		// Function that plays one round of the game
-		function playRound (playerSelection, computerSelection) {
+		// Function that plays one round of the game with ternary logic
+		function playRoundTernary (playerSelection, computerSelection) {
 			let player = playerSelection.toLowerCase();
-			
-			// TODO add handler for player inputting non-valid values
-			
+			// handler for player inputting non-valid values
+			if (player !== "rock" || player !== "paper" || player !== "scissors") {
+				return "You cannot play rock, paper, scissors with that!";
+			}
 			let pc = computerSelection;
 			
 			// The game logic is handled by ternary operators
@@ -46,7 +51,81 @@
 				;
 		}
 		
-		console.log(playRound("Scissors", computerPlay()));
+		// Function that plays the game and updates the score
+		function playRound(playerInput, pcInput) {
+			let player = playerInput.toLowerCase();
+			console.log(player);
+			// Handle player inputting non valid values
+			if (player != "rock" && player != "paper" && player != "scissors") {
+				return "You cannot play rock, paper, scissors with that!";
+			}
+			let pc = pcInput;
+			
+			if (player === "rock") {
+				if (pc === "scissors") {
+					playerScore++;
+					return "You win! Rock over scissors!";
+				} else if (pc === "rock") {
+					return "It's a tie! Rock vs. rock!";
+				} else {
+					pcScore++;
+					return "You lose! Rock against paper!";
+				}
+			} else if (player === "paper") {
+				if (pc === "rock") {
+					playerScore++;
+					return "You win! Paper over rock!";
+				} else if (pc === "paper") {
+					return "It's a tie! Paper vs. paper!";
+				} else {
+					pcScore++;
+					return "You lose! Paper against scissors!";
+				}
+			} else {
+				if (pc === "paper") {
+					playerScore++;
+					return "You win! Scissors over paper!";
+				} else if (pc === "scissors") {
+					return "It's a tie! scissors vs. scissors!";
+				} else {
+					pcScore++;
+					return "You lose! Scissors against Rock!";
+				}
+			}
+		}
+		
+		// Function that prints current score
+		function displayScore(playerScore, pcScore){
+			return "Player: " + playerScore + ", Computer: " + pcScore;
+		}
+		
+		// Function that plays a first to three
+		function game() {
+			playerScore = 0;
+			pcScore = 0;
+			
+			do {
+				// Ask for player's choice and define pc's move
+				let playerInput = prompt("Choose one: rock, paper, or scissors", "rock");
+				let pcInput = computerPlay();
+				
+				// Play a round of the game and print the scores
+				console.log(playRound(playerInput, pcInput));
+				console.log(displayScore(playerScore, pcScore));
+				
+			} while (playerScore < 3 && pcScore < 3);
+			
+			// check who won and print the winner
+			if (playerScore > pcScore) {
+				console.log("Congratulations! You win!");
+			} else {
+				console.log("You lost! Better luck next time!");
+			}
+		}
+		
+		// Run the game 
+		game();
+		
 	</script>
 </body>
 </html>
