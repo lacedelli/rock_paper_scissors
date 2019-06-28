@@ -6,6 +6,47 @@
 </head>
 <body>
 	<script>
+		// The AI selects a move based on RNG
+		function computerPlay() {
+			let randNum = Math.floor(Math.random() * Math.floor(3));
+			// If the number is less than 1 (i.e. 0) 
+			if (randNum < 1) {
+				return "rock";
+			} else if (randNum === 1) {
+				return "paper";
+			} else {
+				return "scissors";
+			}
+		}
+		
+		// Function that plays one round of the game
+		function playRound (playerSelection, computerSelection) {
+			let player = playerSelection.toLowerCase();
+			
+			// TODO add handler for player inputting non-valid values
+			
+			let pc = computerSelection;
+			
+			// The game logic is handled by ternary operators
+			// The logic's order is always win, tie, loss
+			return (player === "rock") ? 
+				// Handle player selecting rock
+				(pc === "scissors") ? "You win! Rock defeats scissors!" :
+				(pc === "rock") ? "It's a tie! Rock vs. rock!" :
+				"You lose! Rock is defeated by paper!" :
+			(player === "paper") ?
+				// Handle player selecting paper
+				(pc === "rock") ? "You win! Paper defeats rock!" :
+				(pc === "paper") ? "It's a tie! Paper vs. paper!" :
+				"You lose! Paper is defeated by scissors!" :
+				// Handle the remaining case, scissors
+				(pc === "paper") ? "You win! Scissors defeats paper!" :
+				(pc === "scissors") ? "It's a tie! Scissors vs. scissors!":
+				"You lose! Scissors is defeated by rock!"
+				;
+		}
+		
+		console.log(playRound("Scissors", computerPlay()));
 	</script>
 </body>
 </html>
