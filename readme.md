@@ -1,39 +1,13 @@
+#Rock, Paper, Scissors V2
 
+##Thoughts before jumping in:
 
-Rock, paper, scissors project:
+This is a project that at the same time makes me feel excited and a little bit anxious, I feel like DOM manipulation is one of my weakest suits overall, and if you add the game logic to that, I can see things compounding in an unfavorable way kind of quckly.
 
-Expectations going in:
-	
-	I expect this project to be relatively simple in that 
-	making a bot that selects an option out of three isn't a 
-	herculean task, however, I expect the logic of the game itself
-	to be the biggest obstacle, since I want to try and find the
-	most elegant way to handle the logic but I have no idea
-	what that even looks like!
+However, a big challenge is always, of course, an opportunity for learning, so that's a thing that I'm excited for. I know I'm not gonna be a DOM master from this project, but it's a good thing to find a challenge.
 
-	The main idea that I have right now about how to make the 
-	game logic work is with either a series of if blocks or 
-	"?" logic operators that firstly determine the data inputted
-	from the player and from that point, check for the data the
-	"ai" chose, determining if the player won or lost.
+I did do some groundwork for this one though, which is not a thing I really do a lot --that's a bad habit-- writing out some pseudocode related to the handling of DOM things.
 
-	27/July/2019.
+I don't really like to do this, but I'm starting off with a copy of the previous file; if it were up to me, I would start from the ground up, but refactoring is another skill I have to develop.
 
-
-Thoughts after finishing the project:
-
-	Not to sound like I'm bragging or anything, but the project was
-	overall a breeze, played a liite bit with ternary logic 
-	--knowledge of which to me was a little bit shaky beforehand--
-	and it worked on the first try! Of course, returning a string
-	is a lot simpler than any other operation, but it's a start!
-	
-	The main problem I encountered was with the handling of scope,
-	which still gives me a couple headaches here and there.
-	The variables which hold the score for the player and the pc 
-	originally were intended to be contained within the game() 
-	function, but they were not being updated by playRound(), so
-	I just did the simplest fix I could think of: making them both
-	global variables.
-
-	28/July/2019.
+11/July/2019
