@@ -1,0 +1,73 @@
+body{
+  height: 500px;
+}
+
+/********************************
+       player div styles
+********************************/
+
+.player {
+  position: relative;
+  top: 100px;
+  left:200px;
+  padding-top: 3px;
+  background: #99ccff;
+  width: 150px;
+  height:367px;
+  border-radius: 10px;
+}
+
+.player div {
+  position: relative;
+  height: 100px;
+  width: 100px;
+  left: 25px;
+  text-align: center;
+  background-color: #ffffff;
+  border-radius: 100px;
+}
+
+div p {
+  padding-top:40px;
+}
+
+
+/********************************
+       versus tag styles
+********************************/
+
+.versus {
+  position: relative;
+  top: -200px;
+  left: 430px;
+  width: 100px;
+}
+
+.versus p {
+  font-size: 3em;
+}
+
+/********************************
+         pc div styles
+********************************/
+
+.computer {
+  position: relative;
+  top: -460px;
+  left: 600px;
+  padding-top: 3px;
+  background: #e66;
+  width: 150px;
+  height:367px;
+  border-radius: 10px;
+}
+
+.computer div {
+  position: relative;
+  height: 100px;
+  width: 100px;
+  left: 25px;
+  text-align: center;
+  background-color: #ffffff;
+  border-radius: 100px;
+}
