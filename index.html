@@ -80,7 +80,7 @@
 		
 		//Get the player's choice
 		let options = document.querySelectorAll(".player div");
-		// onclick listeners that return the selected div
+		// onclick listeners that run a round of the game.
 		options.forEach(div => {div.addEventListener('click', function () {
 			  playRound(div, computerPlay());
 			});
