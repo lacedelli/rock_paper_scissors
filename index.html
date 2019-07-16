@@ -7,6 +7,8 @@
 </head>
 <body>
 	
+	<section class="board">
+	</section>
 	<section class="player">
 		<div class="rock">
 			<p>rock</p>
@@ -39,121 +41,123 @@
 		// Setup score counters
 		let pcScore = 0;
 		let playerScore = 0;
+		
+		// Get the DOM references to all the player and pc options
+		const player_scissors = document.querySelector(".player .scissors");
+		const player_rock = document.querySelector(".player .rock"); 
+		const player_paper = document.querySelector(".player .paper");
+		
+		const pc_scissors = document.querySelector(".computer .scissors");
+		const pc_rock = document.querySelector(".computer .rock");
+		const pc_paper = document.querySelector(".computer .paper");
+		
+		
+		const board = document.querySelector(".board");
+		// Create dynamic scoreboard
+		let score = document.createElement("p");
+		score.setAttribute("class", "score");
+		score.innerHTML = "Score";
+		board.appendChild(score);
+		
+		// Create a round status message
+		let status = document.createElement("p");
+		status.setAttribute("class", "status");
+		status.innerHTML = "Status";
+		board.appendChild(status);
+		
 		// The AI selects a move based on RNG
 		function computerPlay() {
 			let randNum = Math.floor(Math.random() * Math.floor(3));
 			// If the number is less than 1 (i.e. 0) 
 			if (randNum < 1) {
-				return "rock";
+				return pc_rock;
 			} else if (randNum === 1) {
-				return "paper";
+				return pc_paper;
 			} else {
-				return "scissors";
+				return pc_scissors;
 			}
 		}
 		
-		// Function that plays one round of the game with ternary logic
-		function playRoundTernary (playerSelection, computerSelection) {
-			let player = playerSelection.toLowerCase();
-			// handler for player inputting non-valid values
-			if (player !== "rock" || player !== "paper" || player !== "scissors") {
-				return "You cannot play rock, paper, scissors with that!";
-			}
-			let pc = computerSelection;
-			
-			// The game logic is handled by ternary operators
-			// The logic's order is always win, tie, loss
-			return (player === "rock") ? 
-				// Handle player selecting rock
-				(pc === "scissors") ? "You win! Rock defeats scissors!" :
-				(pc === "rock") ? "It's a tie! Rock vs. rock!" :
-				"You lose! Rock is defeated by paper!" :
-			(player === "paper") ?
-				// Handle player selecting paper
-				(pc === "rock") ? "You win! Paper defeats rock!" :
-				(pc === "paper") ? "It's a tie! Paper vs. paper!" :
-				"You lose! Paper is defeated by scissors!" :
-				// Handle the remaining case, scissors
-				(pc === "paper") ? "You win! Scissors defeats paper!" :
-				(pc === "scissors") ? "It's a tie! Scissors vs. scissors!":
-				"You lose! Scissors is defeated by rock!"
-				;
-		}
+		//Get the player's choice
+		let options = document.querySelectorAll(".player div");
+		// onclick listeners that return the selected div
+		options.forEach(div => {div.addEventListener('click', function () {
+			  playRound(div, computerPlay());
+			});
+		});
 		
 		// Function that plays the game and updates the score
 		function playRound(playerInput, pcInput) {
-			let player = playerInput.toLowerCase();
-			console.log(player);
-			// Handle player inputting non valid values
-			if (player != "rock" && player != "paper" && player != "scissors") {
-				return "You cannot play rock, paper, scissors with that!";
-			}
+			
+			let player = playerInput;
+			
 			let pc = pcInput;
 			
-			if (player === "rock") {
-				if (pc === "scissors") {
+			// change the styles of the selected divs
+			player.classList.toggle("selected");
+			pc.classList.toggle("selected");
+			
+			// Change the logic to Compare the divs' classes
+			// Print a "you win" or "you lose" message
+			if (player.classList[0] === "rock") {
+				if (pc.classList[0] === "scissors") {
 					playerScore++;
-					return "You win! Rock over scissors!";
-				} else if (pc === "rock") {
-					return "It's a tie! Rock vs. rock!";
+					status.innerHTML = "You win! Rock vs. scissors.";
+				} else if (pc.classList[0] === "rock") {
+					status.innerHTML = "It's a tie! Rock vs. rock";
 				} else {
 					pcScore++;
-					return "You lose! Rock against paper!";
+					status.innerHTML = "You lose! Rock vs. paper.";
 				}
-			} else if (player === "paper") {
-				if (pc === "rock") {
+			} else if (player.classList[0] === "paper") {
+				if (pc.classList[0] === "rock") {
 					playerScore++;
-					return "You win! Paper over rock!";
-				} else if (pc === "paper") {
-					return "It's a tie! Paper vs. paper!";
+					status.innerHTML = "You win! Paper vs. rock!";
+				} else if (pc.classList[0] === "paper") {
+					status.innerHTML = "It's a tie! Paper vs. paper!";
 				} else {
 					pcScore++;
-					return "You lose! Paper against scissors!";
+					status.innerHTML = "You lose! Paper vs. scissors!";
 				}
 			} else {
-				if (pc === "paper") {
+				if (pc.classList[0] === "paper") {
 					playerScore++;
-					return "You win! Scissors over paper!";
-				} else if (pc === "scissors") {
-					return "It's a tie! scissors vs. scissors!";
+					status.innerHTML = "You win! Scissors vs. paper!";
+				} else if (pc.classList[0] === "scissors") {
+					status.innerHTML = "It's a tie! scissors vs. scissors!";
 				} else {
 					pcScore++;
-					return "You lose! Scissors against Rock!";
+					status.innerHTML = "You lose! Scissors vs. Rock!";
 				}
 			}
+			
+			score.innerHTML = `player ${playerScore} points, pc ${pcScore} points`;
+			// Conditional block that gets activated when 
+			// a player's score reaches three.
+			if (playerScore === 3 || pcScore === 3) {
+				// Final status  gets printed on the document
+				if (playerScore > pcScore) {
+					score.innerHTML = "Congratulations! You win!";
+				} else {
+					score.innerHTML = "You lost! Better luck next time!";
+				}
+				status.innerHTML = "Please refresh the page to play another game";
+			}
+			// Set a timer that waits a couple of seconds and returns 
+			// The game to its original visual state
+			
+			setTimeout(() => {
+				player.classList.toggle("selected");
+				pc.classList.toggle("selected");
+			}, 1000);
+			
+			
 		}
 		
-		// Function that prints current score
+		// Change scoreboard to modify the <p> element on the dom
 		function displayScore(playerScore, pcScore){
-			return "Player: " + playerScore + ", Computer: " + pcScore;
+			score.innerHTML = "Player: " + playerScore + ", Computer: " + pcScore;
 		}
-		
-		// Function that plays a first to three
-		function game() {
-			playerScore = 0;
-			pcScore = 0;
-			
-			do {
-				// Ask for player's choice and define pc's move
-				let playerInput = prompt("Choose one: rock, paper, or scissors", "rock");
-				let pcInput = computerPlay();
-				
-				// Play a round of the game and print the scores
-				console.log(playRound(playerInput, pcInput));
-				console.log(displayScore(playerScore, pcScore));
-				
-			} while (playerScore < 3 && pcScore < 3);
-			
-			// check who won and print the winner
-			if (playerScore > pcScore) {
-				console.log("Congratulations! You win!");
-			} else {
-				console.log("You lost! Better luck next time!");
-			}
-		}
-		
-		// Run the game 
-		game();
 		
 	</script>
 </body>
