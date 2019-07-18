@@ -1,6 +1,6 @@
-#Rock, Paper, Scissors V2
+# Rock, Paper, Scissors V2
 
-##Thoughts before jumping in:
+## Thoughts before jumping in:
 
 This is a project that at the same time makes me feel excited and a little bit anxious, I feel like DOM manipulation is one of my weakest suits overall, and if you add the game logic to that, I can see things compounding in an unfavorable way kind of quckly.
 
@@ -12,7 +12,7 @@ I don't really like to do this, but I'm starting off with a copy of the previous
 
 11/July/2019
 
-##Thoughts after finishing the project
+## Thoughts after finishing the project
 
 So, confession time: I had to scale down the size of this project from what I originally wanted to do, I'm talking svg icons for the options, custom animations that disabled the other options and centered the player's choice, in my mind, it looked nothing like the end product.
 
