@@ -21,3 +21,5 @@ Which isn't to say that I think the end product is bad, I'm genuinely kinda prou
 Now that I'm talking about that, I guess that I have to explain why I made an anonymous function just to call playRound, to be honest, the reason why that is, is because I don't really know how to call functions with parameters in that manner still, I still have a lot to learn regarding functional programming and higher level functions, but honestly, I feel like I'm just one breakthroug away from completely understanding it.
 
 Barebones, not really what I had in mind when I started, and all the layout work in CSS is honestly trash, but it works. And that's where I'm at right now.
+
+16/July/2019
